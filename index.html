@@ -66,25 +66,36 @@
 
 
 
-<div id="inline">
+<!-- <div id="inline">
 	<h2>Онлайн заявка</h2>
 	<form id="contact" action="#" method="post" name="contact">
 	<input id="name" class="txt" name="name" type="name" placeholder="Ваше имя">
 	<input id="phone" class="txt" name="phone" type="phone" placeholder="Ваш телефон"> 
 	<input id="email" class="txt" name="email" type="email" placeholder="Ваш e-mail"> 
-	<textarea id="msg" class="txtarea" name="msg" placeholder="Ваше сообщение:"></textarea><button id="send">Связаться</button></form></div>
+	<textarea id="msg" class="txtarea" name="msg" placeholder="Ваше сообщение:"></textarea><button id="send">Связаться</button></form><link rel=»stylesheet» type=»text/css» media=»all» href=»fancybox/jquery.fancybox.css»>
+	<script src=»js/jquery-1.7.1.min.js»></script>
+	<script src=»fancybox/jquery.fancybox.js»></script></div> -->
 
 
 
-<div class=" card upload">
-	<h1>Загрузите файл</h1>
-	<input type="file" id="file-uploader" multiple>
-	<p id="feedback"></p>
-  </div>
+	<div class="card bg-blue">
+		<h2>Мои проекты</h2>
+		<ul class="link-list">
+		   <li>
+	   <a href="./files/Отчёт 1 по ОПИ.pdf" >Практическая работа № 1. Сложность программного обеспечения</a>
+		   </li>
+		   <li>
+			   <a href="./files/Отчёт 2 по ОПИ.pdf" >Практическая работа № 2. Жизненный цикл программного обеспечения</a>
+		   </li>
+		   <li>
+			   <a href="./files/Отчёт 3 по ОПИ.pdf" >Практическая работа № 3. Обзор методологий проектирования программных продуктов</a>
+		   </li>
+	   </ul>
+	   </div>
 
 <div class="contact">
  <h2>Связаться со мной</h2>
-<form action="/">
+<form action="sendmessage.php" method="POST">
 	<div class="row">
 	<div class="form-group">
 	<label for="name">Ваше имя:</label>

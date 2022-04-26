@@ -1,21 +1,42 @@
-
-<!-- Через 10 секунд после появления сообщения об отправке или ошибке — отправляемся на сайт Кода :) -->
-<meta http-equiv='refresh' content='10; url=http://thecode.local/'>
-<meta charset="UTF-8" />
-<!-- Начался блок PHP -->
 <?php
-// Получаем значения переменных из пришедших данных
-$name = $_POST['name'];
-$email = $_POST['email'];
-$header = $_POST['header'];
-$message = $_POST['message'];
-// Формируем сообщение для отправки, в нём мы соберём всё, что ввели в форме
-$mes = "Имя: $name \nE-mail: $email \nТема: $header \nТекст: $message";
-// Пытаемся отправить письмо по заданному адресу
-// Если нужно, чтобы письма всё время уходили на ваш адрес — замените первую переменную $email на свой адрес электронной почты
-$send = mail(danik01022004@gmail.com, $header, $mes, "Content-type:text/plain; charset = UTF-8\r\nFrom:$email");
-// Если отправка прошла успешно — так и пишем
-if ($send == 'true') {echo "Сообщение отправлено";}
-// Если письмо не ушло — выводим сообщение об ошибке
-else {echo "Ой, что-то пошло не так";}
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
+    require "PHPMailer/src/Exception.php";
+    require "PHPMailer/src/PHPMailer.php";
+
+    $mail = new PHPMailer(true);
+	
+    $mail->CharSet = "UTF-8";
+    $mail->IsHTML(true);
+
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $message = $_POST["message"];
+	$email_template = "template_mail.html";
+
+    $body = file_get_contents($email_template);
+	$body = str_replace('%name%', $name, $body);
+	$body = str_replace('%email%', $email, $body);
+	$body = str_replace('%phone%', $phone, $body);
+	$body = str_replace('%message%', $message, $body);
+
+    $mail->addAddress("danik01022004@gmail.com");   // Здесь введите Email, куда отправлять
+	$mail->setFrom($email);
+    $mail->Subject = "[Заявка с формы]";
+    $mail->MsgHTML($body);
+
+    if (!$mail->send()) {
+        $message = "Ошибка отправки";
+    } else {
+        $message = "Данные отправлены!";
+    }
+	
+	$response = ["message" => $message];
+
+    header('Content-type: application/json');
+    echo json_encode($response);
+
+
 ?>

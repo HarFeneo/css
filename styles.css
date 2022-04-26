@@ -91,6 +91,10 @@ a:active{
     background: #ffe5e5;
 }
 
+.bg-blue{
+    background: #E0FFFF;
+}
+
 .card{
     padding: 15px 20px;
     margin-bottom: 20px;
@@ -194,6 +198,7 @@ color: #86898f;
         align-items: center;
         font-family: 'Roboto Mono', monospace;
 }
+
 
 
 
